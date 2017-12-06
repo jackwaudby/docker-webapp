@@ -1,0 +1,41 @@
+version: "3"
+services:
+  web:
+    image: nclcloudcomputing/javabenchmarkapp
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+##      resources:
+##        limits:
+##          cpus: "0.1"
+##          memory: 10M
+    ports:
+      - "80:8080"   
+    networks:
+      - webnet
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8880:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "3306:27017"
+    volumes: 
+      - /Users/jackwaudby/Desktop/myMongo:/data/db
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+networks:
+  webnet:
+
