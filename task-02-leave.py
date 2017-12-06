@@ -1,5 +1,5 @@
 # Python script for leaving a swarm
-# usage: python leave-swarm.py  
+# usage: python task-02-leave.py  
 
 # loading modules
 import docker
