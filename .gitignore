@@ -2,8 +2,7 @@
 backup-files/
 R/.Rapp.history
 R/.Rhistory
-collections.csv
-database-names.csv
+*.csv
 graphics/
 latex/
-project.txt
+*.txt
