@@ -68,6 +68,14 @@ show collections # show collections
 sh ./task-05-master.sh http://localhost:8080/primecheck 150 10 1 four # placing load on web app and storing data 
 ```
 
+## Task 6: Using R to recreate plot 
+Prerequisites:
+- `graphics/` folder in working directory
+- `collection.csv`
+- `databases-names.csv`
+```{r, engine='bash'}
+Rscript R/graphs.R /Users/jackwaudby/Library/'Mobile Documents'/com~apple~CloudDocs/csc8110/docker/R
+```
 
 
  
