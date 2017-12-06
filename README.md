@@ -21,13 +21,18 @@ docker stack rm cloudproject # Remove stack
 docker swarm leave --force # Leave swarm 
 
 ## - Python SDK 
+```python
 python task-02-deploy.py 
 python task-02-display.py
+```
+```{r, engine='bash'}
 open http://localhost:8081 # Check they are running 
 open http://localhost:8080/primecheck
 open http://localhost:3306
+```
+```python
 python task-02-leave.py
-
+```
 # Task 3: Load generator 
 
 sh ./task-03-load-generator.sh http://localhost:8080/primecheck 4 2 4
