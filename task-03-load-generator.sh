@@ -1,3 +1,6 @@
+# This is a shell script for placing a load on a application by calling its URL.
+# The script takes 4 parameters 
+
 #!/bin/bash
 
 # usage ./load-generator.sh URL number-of-concurrent-calls interval-between-set-concurrent-calls iterations 
