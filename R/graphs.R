@@ -1,3 +1,8 @@
+#!/usr/bin/env Rscript
+args = commandArgs(trailingOnly=TRUE)
+
+setwd(args[1])
+
 # Libraries 
 {
 # load mongolite
@@ -9,14 +14,11 @@ library(ggplot2)
 # Set up 
 {
 # read in collection names 
-(collectionNames = readLines("../collections.csv"))
+collectionNames = readLines("../collections.csv")
 # remove cadvisor
 collectionNames = collectionNames[-1]
 # read in database names 
-(databaseNames = readLines("../database-names.csv"))
-# directories for printing out plots
-graph.direct = "/Users/jackwaudby/Library/Mobile Documents/com~apple~CloudDocs/csc8110/docker/graphics"
-r.direct = "/Users/jackwaudby/Library/Mobile Documents/com~apple~CloudDocs/csc8110/docker/R"
+databaseNames = readLines("../database-names.csv")
 }
 
 # Function
@@ -29,11 +31,6 @@ r.direct = "/Users/jackwaudby/Library/Mobile Documents/com~apple~CloudDocs/csc81
 # - specficied plots
 # - number of documents in the collection 
 cadvisor.plots <- function(collections, database, type){
-  
-  # TEST RUN PARAMETERS 
-  #collections = collectionNames
-  #database = databaseNames[1]
-  #type = "cpu"
   
   # creating empty dataframe for number of documents in each collection
   number.docs = rep(0,length(collections))
