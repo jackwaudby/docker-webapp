@@ -1,6 +1,6 @@
 # Python script for deploying a multi-service application
 # MongoDB, swarm visualiser and 2 instances of a prime number check
-# usage: python task-02.py  
+# usage: python task-02-deploy.py  
 
 # loading modules
 import docker
