@@ -1,5 +1,8 @@
-# PIPELINE 
-# PULLS RAW DATA -> CREATES JSON FILE -> UPLOADS DATA TO MONGODB 
+# This python script pull raw data from cAdvisor using the REST API for each active container.
+# It then stores the JSON files in a mongoDB database, with a collection for each container. 
+
+# usage: python task-05-pipeline.py database 
+# returns: prints the collection names within the database 
 
 # loading modules
 import docker
@@ -7,8 +10,8 @@ import requests
 import json
 import pymongo
 import sys
-
 from pymongo import MongoClient
+
 # setting up client 
 client = docker.from_env()
 
@@ -16,14 +19,11 @@ client = docker.from_env()
 mclient = MongoClient('localhost', 3306)
 
 # defining database 
-#db = mclient.project
-
 number = sys.argv[1]
 name = 'loadgen' + number
-# defining database 
 db = mclient[name] 
 
-# for each container
+# for each container in the web application
 for item in client.containers.list():
     
     # get id and name 
@@ -34,22 +34,12 @@ for item in client.containers.list():
     url = 'http://localhost:70/api/v1.2/docker/' + cont_id
     # pull raw data 
     res = requests.get(url).json()
-    # create suitable filename 
-    #filename = 'usage-recordings/' + cont_id + '.json'
-    # write out data to JSON file
-    #with open(filename, 'w') as f:
-     #   json.dump(res, f)
-        
+    parsed = res
     # creating collection   
     records = db[cont_name]
-    # access data
-    #page = open(filename,'r')
-    # parse data in
-    #parsed = json.loads(page.read())
-    parsed = res
-    # unique search parameter
+    # unique container search parameter 
     search = '/docker/' + cont_id
-    # storing each stats record in mongo db
+    # storing each stats record in container's collection in the database
     for record in parsed[search]['stats']:
         records.insert(record)
 
