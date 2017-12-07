@@ -26,7 +26,8 @@ services:
     ports:
       - "3306:27017"
     volumes: 
-      - /Users/jackwaudby/Desktop/myMongo:/data/db
+      #- /Users/jackwaudby/Desktop/myMongo:/data/db
+      -/Users/jackwaudby/Library/'Mobile Documents'/com~apple~CloudDocs/csc8110/docker/myMongo:/data/db
     deploy:
       placement:
         constraints: [node.role == manager]

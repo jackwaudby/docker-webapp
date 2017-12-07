@@ -17,7 +17,8 @@ sm_prime = docker.types.ServiceMode('replicated',2)
 es_viz = docker.types.EndpointSpec(ports={8081:8080})
 mount_viz = ["/var/run/docker.sock:/var/run/docker.sock"]
 es_mongo = docker.types.EndpointSpec(ports={3306:27017})
-mount_mongo = ["/Users/jackwaudby/Desktop/myMongo:/data/db"]
+#mount_mongo = ["/Users/jackwaudby/Desktop/myMongo:/data/db"]
+mount_mongo = ["/Users/jackwaudby/Library/'Mobile Documents'/com~apple~CloudDocs/csc8110/docker/myMongo:/data/db"]
 manager = ["node.role == manager"]
 
 
