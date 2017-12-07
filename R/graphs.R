@@ -75,9 +75,9 @@ cadvisor.plots <- function(collections, database, type){
       
       # creating the plot object 
       g = ggplot(data=dat, aes(x=time,y=cores)) +
-        ggtitle(paste("Total Usage of",collections[i]),subtitle=database) +
-        geom_line(color=i+1) +
-        theme(plot.subtitle = element_text(size=10, face="italic"))
+            ggtitle(paste("Total Usage of",collections[i]),subtitle=database) +
+              geom_line(color=i+1) +
+                theme(plot.subtitle = element_text(size=10, face="italic"))
       
       mypath <- file.path("/Users/jackwaudby/Library/Mobile Documents/com~apple~CloudDocs/csc8110/docker/graphics",paste(collections[i],"-", database, ".png", sep = ""))
       
@@ -98,29 +98,24 @@ cadvisor.plots <- function(collections, database, type){
       # convert to megabytes
       memory.usage = memory.usage/1000000
       
-      # extracting timestamps
-      times = alldata$timestamp
-      # cleaning timestamps 
-      ct = cleantime(times)
-      
       # creating dataframe for ggplot
-      dat = data.frame(memory.usage,ct)
+      dat = data.frame(memory.usage,times)
       names(dat) <- c("memory","time")
-      # creating the plot object 
-      
-      setwd(graph.direct)
-      png(filename=paste("totalmemory-",collections[i],".png",sep=""))
-      
+      # creating the plot object
       g = ggplot(data=dat, aes(x=time,y=memory)) + 
             geom_line(color=i) +
-              ggtitle(paste("Total Memory Usage of",collections[i])) +
-                ylab("megabytes") 
-      print(g)
+              ggtitle(paste("Total Memory Usage of",collections[i]),subtitle=database) +
+                ylab("megabytes") + geom_line(color=i+1) +
+                  theme(plot.subtitle = element_text(size=10, face="italic"))
       
+      mypath <- file.path("/Users/jackwaudby/Library/Mobile Documents/com~apple~CloudDocs/csc8110/docker/graphics",paste("memory","-",collections[i],"-", database, ".png", sep = ""))
+      
+      png(file=mypath)
+    
+      print(g)
+    
       dev.off()
       
-      setwd(r.direct)
-
     }
       
   }
@@ -130,11 +125,16 @@ cadvisor.plots <- function(collections, database, type){
 }
 }
 
+
 # Function calls
 {
 # CPU 
 for (i in 1:length(databaseNames)) {
-  cadvisor.plots(collections = collectionNames, database = databaseNames[i], type = "cpu")
+  cadvisor.plots(collections = collectionNames, database = databaseNames[i], type = args[2])
 }
 
+# Memory
+for (i in 1:length(databaseNames)) {
+  cadvisor.plots(collections = collectionNames, database = databaseNames[i], type = args[2])
+}  
 }
