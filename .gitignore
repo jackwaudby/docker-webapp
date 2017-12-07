@@ -3,6 +3,7 @@ backup-files/
 R/.Rapp.history
 R/.Rhistory
 *.csv
+*.docx
 graphics/
 latex/
 project.txt
