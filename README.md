@@ -79,14 +79,14 @@ sh ./task-05-master.sh http://localhost:8080/primecheck 150 10 1 four # placing 
 ```
 
 ## Task 6: Using R to recreate plot
-Running this script recreates plot in cAdvisor using the data stored in the mongoDB.
-
+Running this script recreates plot, memory or cpu usage, in cAdvisor using the data stored in the mongoDB
 Prerequisites:
 - `graphics/` folder in working directory, graphics are saved here.
 - `collection.csv` created during Task 4
 - `databases-names.csv` created during Task 4
 ```{r, engine='bash'}
-Rscript R/graphs.R /Users/jackwaudby/Library/'Mobile Documents'/com~apple~CloudDocs/csc8110/docker/R memory
+Rscript R/graphs.R <absolute path to R script directory> <metric> # format
+Rscript R/graphs.R /Users/jackwaudby/Library/'Mobile Documents'/com~apple~CloudDocs/csc8110/docker/R memory #example
 ```
 
  
