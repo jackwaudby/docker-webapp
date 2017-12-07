@@ -128,13 +128,7 @@ cadvisor.plots <- function(collections, database, type){
 
 # Function calls
 {
-# CPU 
 for (i in 1:length(databaseNames)) {
   cadvisor.plots(collections = collectionNames, database = databaseNames[i], type = args[2])
 }
-
-# Memory
-for (i in 1:length(databaseNames)) {
-  cadvisor.plots(collections = collectionNames, database = databaseNames[i], type = args[2])
-}  
 }
