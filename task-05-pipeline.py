@@ -1,7 +1,7 @@
 # This python script pull raw data from cAdvisor using the REST API for each active container.
 # It then stores the JSON files in a mongoDB database, with a collection for each container. 
 
-# usage: python task-05-pipeline.py database 
+# usage: python task-05-pipeline.py <database> 
 # returns: prints the collection names within the database 
 
 # loading modules
